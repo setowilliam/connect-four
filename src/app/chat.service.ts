@@ -22,4 +22,8 @@ export class ChatService {
   sendMessage(msg) {
     this.socket.emit('chat message', msg);
   }
+
+  setUserName(name) {
+    this.socket.emit('username', name);
+  }
 }

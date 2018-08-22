@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChatService } from '../chat.service';
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-chat-window',
@@ -11,8 +13,9 @@ export class ChatWindowComponent implements OnInit {
   getMessagesSub: any;
   messages: any[] = [];
   currentMessage: string;
+  user: string;
 
-  constructor(private chatService: ChatService) { }
+  constructor(private chatService: ChatService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.getMessagesSub = this.chatService.getMessages.subscribe((data) => {
@@ -20,6 +23,19 @@ export class ChatWindowComponent implements OnInit {
       msg.id = "msg" + this.messages.length;
       this.messages.unshift(msg);
     });
+
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.data = { user: this.user };
+
+    setTimeout(() => this.dialog.open(DialogComponent, dialogConfig).afterClosed().subscribe(result => {
+      this.user = result;
+      this.chatService.setUserName(this.user);
+    }))
+  }
+
+  ngAfterViewInit() {
+
   }
 
   sendMessage() {

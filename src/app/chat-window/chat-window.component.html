@@ -4,7 +4,7 @@
     <input matInput placeholder="Type a message" name="currentMessage" autocomplete="off" [(ngModel)]="currentMessage">
   </mat-form-field>
 
-  <button mat-raised-button type="submit">Send Message</button>
+  <button mat-raised-button type="submit" [disabled]="!user">Send Message</button>
 
 </form>
 

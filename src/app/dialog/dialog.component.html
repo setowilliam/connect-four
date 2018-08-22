@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>Enter Username</h2>
+
+<mat-dialog-content>
+  <mat-form-field>
+    <input matInput placeholder="Username" [(ngModel)]="data.user">
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-raised-button type="submit" [mat-dialog-close]="data.user">OK</button>
+</mat-dialog-actions>
