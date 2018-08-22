@@ -1,0 +1,71 @@
+.grid {
+    display:grid;
+    grid-template-columns: repeat(7, width);
+    grid-template-rows: repeat(6, width);
+    grid-template-areas: 
+        "col0 col1 col2 col3 col4 col5 col6"
+        "col0 col1 col2 col3 col4 col5 col6"
+        "col0 col1 col2 col3 col4 col5 col6"
+        "col0 col1 col2 col3 col4 col5 col6"
+        "col0 col1 col2 col3 col4 col5 col6"
+        "col0 col1 col2 col3 col4 col5 col6";
+    gap: 10px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column-reverse;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    text-align: center;
+    margin: 10px;
+}
+
+#column0 {
+    grid-area: col0;
+}
+
+#column1 {
+    grid-area: col1;
+}
+
+#column2 {
+    grid-area: col2;
+}
+
+#column3 {
+    grid-area: col3;
+}
+
+#column4 {
+    grid-area: col4;
+}
+
+#column5 {
+    grid-area: col5;
+}
+
+#column6 {
+    grid-area: col6;
+}
+
+.column > div {
+    border-radius: 50%;
+    border-style: solid;
+    border-color: grey;
+    height: 50px;
+    width: 50px;
+    margin: 10px 0;
+}
+
+.none {
+    background: lightgrey;
+}
+
+.red {
+    background: rgb(206, 74, 74);
+}
+
+.yellow {
+    background: rgb(228, 228, 10);
+}

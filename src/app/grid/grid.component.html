@@ -1,0 +1,7 @@
+<mat-card style="background:lightblue; margin-top: 10px; border-radius: 20px">
+  <div class="grid">
+    <div *ngFor="let column of grid.columns" class="column" [id]="column.id" (mouseover)="overColor(column)" (mouseout)="outColor(column)" (click)="changeState(column)">
+      <div *ngFor="let cell of column.cells" [class]="cell.color"></div>
+    </div>
+  </div>
+</mat-card>

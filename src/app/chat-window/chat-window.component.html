@@ -1,0 +1,16 @@
+<form class="form" (ngSubmit)="sendMessage()">
+
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Type a message" name="currentMessage" autocomplete="off" [(ngModel)]="currentMessage">
+  </mat-form-field>
+
+  <button mat-raised-button type="submit">Send Message</button>
+
+</form>
+
+<mat-card style="overflow-y:scroll; height: 400px; width: 390px">
+  <mat-form-field class="message-container" appearance="outline" *ngFor="let message of messages">
+    <mat-label>{{message.user}}</mat-label>
+    <textarea class="message" matInput [value]="message.msg" readonly></textarea>
+  </mat-form-field>
+</mat-card>
