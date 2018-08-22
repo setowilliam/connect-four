@@ -1,20 +1,31 @@
 .form {
-    min-width: 400px;
-    max-width: 500px;
-    width: 100%;
-    margin-top: 10px;
-  }
-  
-  .full-width {
-    width: 300px;
-    padding-right: 10px;
-  }
+  min-width: 400px;
+  max-width: 500px;
+  width: 100%;
+  margin-top: 10px;
+}
 
-  .message-container {
-    width: 100%;
-  }
+.full-width {
+  width: 300px;
+  padding-right: 10px;
+}
 
-  .message {
-    resize: none;
-    overflow: hidden;
-  }
+.message-container {
+  width: 100%;
+}
+
+.message {
+  resize: none;
+  overflow: hidden;
+}
+
+.chat {
+  overflow-y:scroll;
+  height: 400px;
+  width: 390px;
+  -ms-overflow-style: none;
+}
+
+.chat::-webkit-scrollbar {
+  width: 0;
+}

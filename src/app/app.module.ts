@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatToolbarModule, MatGridListModule, MatFormFieldModule, MatInputModule, MatDividerModule, MatListModule, MatCardModule } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { GridComponent } from './grid/grid.component';

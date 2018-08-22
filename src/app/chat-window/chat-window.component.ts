@@ -16,33 +16,28 @@ export class ChatWindowComponent implements OnInit {
 
   ngOnInit() {
     this.getMessagesSub = this.chatService.getMessages.subscribe((data) => {
-      this.messages.unshift(JSON.parse(data));
+      let msg = JSON.parse(data);
+      msg.id = "msg" + this.messages.length;
+      this.messages.unshift(msg);
     });
   }
 
   sendMessage() {
     if (this.currentMessage) {
-      let temp = new Promise((res, rej) => {
-        this.chatService.sendMessage(this.currentMessage);
-        res();
-      });
-      temp.then(() => {
-        this.autoGrow();
-        this.currentMessage = "";
-      }).catch(() => {
-        console.log("Something went wrong")
-      })
+      this.chatService.sendMessage(this.currentMessage);
+      this.currentMessage = "";
     }
   }
 
-  autoGrow() {
-    let msg = document.querySelectorAll('.message') as HTMLCollectionOf<HTMLElement>;
-    for (let i = 0; i < msg.length; i++) {
-      msg[i].style.height = '5px';
-      msg[i].style.height = msg[i].scrollHeight + 'px';
-    }
+  autoGrow(id) {
+    let msg = document.getElementById(id);
+    msg.style.height = '5px';
+    msg.style.height = msg.scrollHeight + 'px';
   }
 
+  toggleState() {
+
+  }
   ngOnDestroy() {
     if (this.getMessagesSub) {
       this.getMessagesSub.unsubscribe();
