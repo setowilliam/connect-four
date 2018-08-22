@@ -21,7 +21,7 @@ export class ChatWindowComponent implements OnInit {
     this.getMessagesSub = this.chatService.getMessages.subscribe((data) => {
       let msg = JSON.parse(data);
       msg.id = "msg" + this.messages.length;
-      this.messages.unshift(msg);
+      this.messages.push(msg);
     });
 
     const dialogConfig = new MatDialogConfig();
@@ -32,10 +32,6 @@ export class ChatWindowComponent implements OnInit {
       this.user = result;
       this.chatService.setUserName(this.user);
     }))
-  }
-
-  ngAfterViewInit() {
-
   }
 
   sendMessage() {
@@ -49,11 +45,10 @@ export class ChatWindowComponent implements OnInit {
     let msg = document.getElementById(id);
     msg.style.height = '5px';
     msg.style.height = msg.scrollHeight + 'px';
+    let chat = document.getElementById("chat");
+    chat.scrollTop = chat.scrollHeight;
   }
 
-  toggleState() {
-
-  }
   ngOnDestroy() {
     if (this.getMessagesSub) {
       this.getMessagesSub.unsubscribe();

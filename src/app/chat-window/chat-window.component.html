@@ -1,4 +1,4 @@
-<mat-card class="chat">
+<mat-card class="chat" id="chat">
   <mat-form-field class="message-container" appearance="outline" *ngFor="let message of messages">
     <mat-label>{{message.user}}</mat-label>
     <textarea class="message" matInput [value]="message.msg" [id]="message.id" readonly>{{autoGrow(message.id)}}</textarea>
