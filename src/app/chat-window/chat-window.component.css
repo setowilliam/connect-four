@@ -21,7 +21,6 @@
 .chat {
   overflow-y:scroll;
   height: 400px;
-  min-width: 300px;
   -ms-overflow-style: none;
 }
 
