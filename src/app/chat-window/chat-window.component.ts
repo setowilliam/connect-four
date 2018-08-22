@@ -36,7 +36,7 @@ export class ChatWindowComponent implements OnInit {
   }
 
   autoGrow() {
-    let msg = document.querySelectorAll('.message');
+    let msg = document.querySelectorAll('.message') as HTMLCollectionOf<HTMLElement>;
     for (let i = 0; i < msg.length; i++) {
       msg[i].style.height = '5px';
       msg[i].style.height = msg[i].scrollHeight + 'px';

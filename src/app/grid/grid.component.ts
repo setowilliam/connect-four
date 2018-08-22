@@ -10,7 +10,7 @@ import { Cell } from '../models/cell';
 })
 export class GridComponent implements OnInit {
 
-  private grid: Grid = new Grid;
+  grid: Grid = new Grid;
   private numRows: number = 6;
   private numCols: number = 7;
   private player: string = "red";
