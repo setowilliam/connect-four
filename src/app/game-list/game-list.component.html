@@ -1,4 +1,4 @@
-<mat-card class="games">
+<!-- <mat-card class="games">
   
   <mat-toolbar>
     <span>Game List</span>
@@ -7,4 +7,18 @@
   <div class="games-container">
     <span *ngFor="let game of chatService.gameList">{{game.gameName}}</span>
   </div>
+</mat-card> -->
+
+<mat-card class="games">
+  <mat-toolbar>
+    <span>Game List</span>
+  </mat-toolbar>
+
+  <div class="gamelist-container">
+    <mat-form-field class="game-container" appearance="outline" *ngFor="let game of chatService.gameList">
+      <mat-label>{{game.hostPlayer}}</mat-label>
+      <textarea class="game" matInput [value]="game.gameName" [id]="game.hostPlayer" (click)="chatService.connectHost(game.hostPlayer, game.status)" readonly></textarea>
+    </mat-form-field>
+  </div>
+
 </mat-card>
