@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatUsersComponent implements OnInit {
 
+
   constructor(public chatService: ChatService) { }
 
   ngOnInit() {

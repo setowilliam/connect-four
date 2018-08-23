@@ -1,1 +1,9 @@
-<button mat-raised-button (click)="hostGame()">host game</button>
+<form class="form" (ngSubmit)="hostGame()">
+
+    <mat-form-field *ngIf="!status">
+        <input matInput placeholder="Enter game name" name="gameName" autocomplete="off" [(ngModel)]="gameName">
+    </mat-form-field>
+
+    <button mat-raised-button type="submit">{{statusString}}</button>
+
+</form>

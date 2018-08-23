@@ -11,25 +11,52 @@ export class ChatService {
 
   socket: SocketIOClient.Socket;
   public getMessages: any;
-  public connectedUsers: string[];
+  public getAddGame: any;
+  public getRemoveGame: any;
+  public getAddUser: any;
+  public getRemoveUser: any;
+  public gameList: string[] = [];
+  public userList: string[] = [];
   user: string;
 
   constructor(public dialog: MatDialog) {
     this.getMessages = new Subject();
+    this.getAddGame = new Subject();
+    this.getRemoveGame = new Subject();
+    this.getAddUser = new Subject();
+    this.getRemoveUser = new Subject();
+
     this.socket = io.connect('https://mighty-spire-54148.herokuapp.com');
+
     this.socket.on('chat message', (msg) => {
       this.getMessages.next(msg);
     });
 
-    this.socket.on('all connected users', data => {
-      this.connectedUsers = data;
+    this.socket.on('add game', game => {
+      this.gameList.push(game);
+    })
+    this.socket.on('remove game', game => {
+      let index = this.gameList.indexOf(game);
+      if (index != -1) {
+        this.gameList.splice(index, 1);
+      }
+    })
+
+
+    this.socket.on('connected user', (users, games) => {
+      this.gameList = games;
+      this.userList = users;
       this.openDialog();
     });
-    this.socket.on('connected user', userName => {
-      this.connectedUsers.push(userName);
+
+    this.socket.on('add user', user => {
+      this.userList.push(user);
     });
-    this.socket.on('disconnected user', userName => {
-      this.connectedUsers.splice(this.connectedUsers.indexOf(userName), 1);
+    this.socket.on('remove user', user => {
+      let index = this.userList.indexOf(user);
+      if (index != -1) {
+        this.userList.splice(index, 1);
+      }
     })
   }
 
@@ -39,6 +66,14 @@ export class ChatService {
 
   setUserName(name) {
     this.socket.emit('username', name);
+  }
+
+  addGame(gameName) {
+    this.socket.emit('add game', gameName);
+  }
+
+  removeGame(gameName) {
+    this.socket.emit('remove game', gameName);
   }
 
   openDialog() {
