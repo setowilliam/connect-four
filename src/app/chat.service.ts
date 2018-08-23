@@ -22,7 +22,8 @@ export class ChatService {
   user: string;
   private numRows: number = 6;
   private numCols: number = 7;
-  public player: string = "red";
+  public player: string;
+  public currentPlayer: string = "red";
 
   constructor(public dialog: MatDialog, public router: Router) {
     this.getMessages = new Subject();
@@ -79,22 +80,29 @@ export class ChatService {
         this.grid.columns.push(column);
       }
 
+      // set the current game
       for (let i = 0; i < this.gameList.length; i++) {
         if (this.gameList[i].hostPlayer == this.socket.id || this.gameList[i].player == this.socket.id) {
           this.currentGame = this.gameList[i];
+          break;
         }
+      }
+      if (this.currentGame.hostPlayer == this.socket.id) {
+        this.player = "red";
+      } else {
+        this.player = "yellow";
       }
       this.router.navigate(['/game']);
     })
 
     this.socket.on('change state', (column, count) => {
       this.grid.columns[column].cells[count - 1].state = 1;
-      this.grid.columns[column].cells[count - 1].color = this.player;
+      this.grid.columns[column].cells[count - 1].color = this.currentPlayer;
       this.grid.columns[column].count++;
-      if (this.player == "red") {
-        this.player = "yellow";
+      if (this.currentPlayer == "red") {
+        this.currentPlayer = "yellow";
       } else {
-        this.player = "red";
+        this.currentPlayer = "red";
       }
     })
 

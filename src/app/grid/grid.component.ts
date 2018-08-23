@@ -12,9 +12,9 @@ import { ChatService } from '../chat.service';
 export class GridComponent implements OnInit {
 
   grid: Grid = new Grid;
-  private numRows: number = 6;
-  private numCols: number = 7;
-  private player: string = "red";
+  // private numRows: number = 6;
+  // private numCols: number = 7;
+  // private player: string = "red";
 
   constructor(public chatService: ChatService) { }
 
@@ -38,7 +38,7 @@ export class GridComponent implements OnInit {
   }
 
   changeState(column) {
-    if (column < 6) {
+    if (column < 7 && this.chatService.currentPlayer == this.chatService.player) {
       this.chatService.changeState(column);
       // column.cells[column.count].state = 1;
       // column.cells[column.count].color = this.player;
