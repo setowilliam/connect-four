@@ -1,10 +1,10 @@
-<mat-card id="users">
-  <mat-toolbar>
-    <span>Users</span>
-  </mat-toolbar>
-  <mat-list>
-    <mat-list-item *ngFor="let user of chatService.connectedUsers">
-      {{user}}
-    </mat-list-item>
-  </mat-list>
-</mat-card>
+<mat-card class="users">
+    <mat-toolbar>
+      <span>Users</span>
+    </mat-toolbar>
+  
+    <div class="users-container">
+      <span *ngFor="let user of chatService.connectedUsers">{{user}}</span>
+    </div>
+  
+  </mat-card>

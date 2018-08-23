@@ -17,6 +17,7 @@ export class ChatService {
     this.socket.on('chat message', (msg) => {
       this.getMessages.next(msg);
     });
+
     this.socket.on('all connected users', data => {
       this.connectedUsers = data;
     });
