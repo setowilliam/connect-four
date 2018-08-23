@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as io from 'socket.io-client';
 import { Subject } from "rxjs";
-import { ChatWindowComponent } from './chat-window/chat-window.component';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +9,7 @@ export class ChatService {
 
   socket: SocketIOClient.Socket;
   public getMessages: any;
+  public connectedUsers: string[];
 
   constructor() {
     this.getMessages = new Subject();
@@ -17,6 +17,15 @@ export class ChatService {
     this.socket.on('chat message', (msg) => {
       this.getMessages.next(msg);
     });
+    this.socket.on('all connected users', data => {
+      this.connectedUsers = data;
+    });
+    this.socket.on('connected user', userName => {
+      this.connectedUsers.push(userName);
+    });
+    this.socket.on('disconnected user', userName => {
+      this.connectedUsers.splice(this.connectedUsers.indexOf(userName), 1);
+    })
   }
 
   sendMessage(msg) {

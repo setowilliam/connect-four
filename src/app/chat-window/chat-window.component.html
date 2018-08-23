@@ -1,8 +1,15 @@
-<mat-card class="chat" id="chat">
-  <mat-form-field class="message-container" appearance="outline" *ngFor="let message of messages">
-    <mat-label>{{message.user}}</mat-label>
-    <textarea class="message" matInput [value]="message.msg" [id]="message.id" readonly>{{autoGrow(message.id)}}</textarea>
-  </mat-form-field>
+<mat-card class="chat">
+  <mat-toolbar>
+    <span>Chat</span>
+  </mat-toolbar>
+
+  <div class="chat-container" id="chat">
+    <mat-form-field class="message-container" appearance="outline" *ngFor="let message of messages">
+      <mat-label>{{message.user}}</mat-label>
+      <textarea class="message" matInput [value]="message.msg" [id]="message.id" readonly>{{autoGrow(message.id)}}</textarea>
+    </mat-form-field>
+  </div>
+
 </mat-card>
 
 <form class="form" (ngSubmit)="sendMessage()">

@@ -14,6 +14,7 @@ import { GameComponent } from './game/game.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { LobbyComponent } from './lobby/lobby.component';
 import { ContentComponent } from './content/content.component';
+import { ChatUsersComponent } from './chat-users/chat-users.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +24,8 @@ import { ContentComponent } from './content/content.component';
     GameComponent,
     DialogComponent,
     LobbyComponent,
-    ContentComponent
+    ContentComponent,
+    ChatUsersComponent
   ],
   entryComponents: [DialogComponent],
   imports: [

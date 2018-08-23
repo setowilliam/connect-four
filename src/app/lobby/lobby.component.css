@@ -1,0 +1,17 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    grid-template-rows: repeat(2, auto);
+    grid-template-areas: 
+        "chat chat chat users"
+        "chat chat chat users";
+    gap: 10px;
+}
+
+.chat {
+    grid-area: chat;
+}
+
+.users {
+    grid-area: users;
+}
