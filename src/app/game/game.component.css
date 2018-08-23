@@ -1,10 +1,22 @@
 .container {
-    display: flex;
-    justify-content: center;
-    flex-flow: row wrap;
-    margin: 0 auto;
+    display: grid;
+    grid-template-areas:
+        "turn turn turn turn turn"
+        "board board board board board"
+        "board board board board board"
+        "board board board board board"
+        "board board board board board";
+    justify-items: center;
 }
 
 .container > * {
     padding: 10px;
+}
+
+.turn {
+    grid-area: turn;
+}
+
+app-grid {
+    grid-area: board;
 }

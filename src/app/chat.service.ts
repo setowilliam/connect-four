@@ -49,6 +49,7 @@ export class ChatService {
     this.socket.on('connected user', (users, games) => {
       this.gameList = games;
       this.userList = users;
+      this.router.navigate(['/lobby']);
       this.openDialog();
     });
 
@@ -113,6 +114,11 @@ export class ChatService {
           break;
         }
       }
+    })
+
+    this.socket.on('leave game', () => {
+      console.log("leaving game")
+      this.router.navigate(['/lobby']);
     })
   }
 
