@@ -142,6 +142,10 @@ export class ChatService {
     this.socket.emit('change state', column, this.currentGame, this.player);
   }
 
+  leaveGame() {
+    this.socket.emit('leave game');
+  }
+
   connectHost(hostPlayer, status) {
     if (this.socket.id != hostPlayer && status) {
       for (let i = 0; i < this.gameList.length; i++) {
