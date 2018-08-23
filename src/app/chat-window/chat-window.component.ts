@@ -15,7 +15,9 @@ export class ChatWindowComponent implements OnInit {
   currentMessage: string;
   user: string;
 
-  constructor(private chatService: ChatService, public dialog: MatDialog) { }
+  constructor(private chatService: ChatService, public dialog: MatDialog) {
+    this.openDialog();
+  }
 
   ngOnInit() {
     this.getMessagesSub = this.chatService.getMessages.subscribe((data) => {
@@ -23,15 +25,6 @@ export class ChatWindowComponent implements OnInit {
       msg.id = "msg" + this.messages.length;
       this.messages.push(msg);
     });
-
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.data = { user: this.user };
-
-    setTimeout(() => this.dialog.open(DialogComponent, dialogConfig).afterClosed().subscribe(result => {
-      this.user = result;
-      this.chatService.setUserName(this.user);
-    }))
   }
 
   sendMessage() {
@@ -47,6 +40,17 @@ export class ChatWindowComponent implements OnInit {
     msg.style.height = msg.scrollHeight + 'px';
     let chat = document.getElementById("chat");
     chat.scrollTop = chat.scrollHeight;
+  }
+
+  openDialog() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.data = { user: this.user };
+
+    setTimeout(() => this.dialog.open(DialogComponent, dialogConfig).afterClosed().subscribe(result => {
+      this.user = result;
+      this.chatService.setUserName(this.user);
+    }))
   }
 
   ngOnDestroy() {
